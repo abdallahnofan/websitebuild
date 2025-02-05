@@ -2,169 +2,245 @@
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>بناء موقعك الإلكتروني المثالي - Build Your Ultimate Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Mobile-First Variables & Base */
+        :root {
+            --primary-color: #007bff;
+            --primary-hover: #0056b3;
+            --secondary-color: #ffffff;
+            --accent-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --gradient-start: rgba(0, 123, 255, 0.9);
+            --gradient-end: rgba(255, 255, 255, 0.9);
+            --font-family: 'Cairo', sans-serif;
+            --transition-speed: 0.3s;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background-color: #f8f9fa;
+            font-family: var(--font-family);
+            background-color: var(--light-bg);
+            color: var(--accent-color);
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+            padding: 10px;
         }
 
-        .header {
-            background: linear-gradient(to right, #007bff, #ffffff);
-            padding: 60px 20px;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Header - Optimized for Phones */
+        header {
+            position: relative;
             text-align: center;
-            color: #2c3e50;
+            padding: 40px 10px;
+            background: url('https://source.unsplash.com/800x600/?technology') center/cover no-repeat;
+            background-color: var(--primary-color);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            opacity: 0.85;
+            z-index: 0;
+        }
+
+        header .header-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .service-title {
-            font-size: 2em;
+            font-size: clamp(1.8em, 4vw, 2.4em);
+            font-weight: 700;
+            color: var(--secondary-color);
             margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
         }
 
         .price {
-            font-size: 1.5em;
+            font-size: clamp(1.3em, 3vw, 1.8em);
             font-weight: bold;
-            color: #007bff;
-            margin-bottom: 15px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 12px 28px;
+            border-radius: 30px;
             font-weight: bold;
-            transition: 0.3s;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            box-shadow: var(--shadow);
             font-size: 1em;
         }
 
         .cta-button:hover {
-            background-color: #0056b3;
+            background-color: var(--primary-hover);
+            transform: scale(1.05);
         }
 
-        .cta-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .features-section {
-            padding: 30px 20px;
-            background-color: white;
+        /* Features Section - Premium Mobile Cards */
+        section.features {
+            padding: 30px 10px;
+            background-color: var(--secondary-color);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
-            color: #2c3e50;
-            font-size: 1.8em;
+            font-size: clamp(1.5em, 4vw, 1.8em);
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr;
             gap: 20px;
             max-width: 100%;
             margin: 0 auto;
         }
 
         .feature-card {
-            padding: 20px;
+            background-color: var(--light-bg);
+            padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             text-align: center;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
         }
 
         .feature-card img {
             width: 50px;
             height: 50px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
+        .feature-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+        }
+
+        .feature-card p {
+            font-size: 0.95em;
+            color: var(--accent-color);
+        }
+
+        /* Footer */
         footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px;
             text-align: center;
+            padding: 15px 10px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
             font-size: 0.9em;
         }
 
-        @media (max-width: 600px) {
-            .service-title {
-                font-size: 1.5em;
+        /* Responsive Enhancements for Tablet & Desktop */
+        @media (min-width: 600px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            .price {
-                font-size: 1.3em;
-            }
-
-            .cta-button {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-
-            .section-title {
-                font-size: 1.5em;
-            }
-
-            .feature-card {
-                padding: 15px;
-            }
-
-            .feature-card img {
-                width: 40px;
-                height: 40px;
+            header {
+                padding: 60px 20px;
             }
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <h1 class="service-title">
-            <span>Build Your Ultimate Website</span>
-            <span>بناء موقعك الإلكتروني المثالي</span>
-        </h1>
-        <div class="price">148$ - 105JOD</div>
-        <div class="cta-container">
+    <header>
+        <div class="header-content">
+            <h1 class="service-title">Build Your Ultimate Website<br>بناء موقعك الإلكتروني المثالي</h1>
+            <div class="price">148$ - 105JOD</div>
             <a href="https://buy.stripe.com/bIY3eQ2zZ8uQ14Q4gn" class="cta-button">اطلب الآن - Order Now</a>
         </div>
     </header>
-
-    <section class="features-section">
+    <section class="features">
         <h2 class="section-title">مميزات الخدمة - Service Features</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/1006/1006365.png" alt="responsive">
-                <h3>تصميم متجاوب - Responsive Design</h3>
-                <p>مواقع تعمل على جميع الأجهزة - Perfect display on all devices</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/1006/1006365.png" alt="Responsive Design">
+                <h3>تصميم متجاوب</h3>
+                <p>مواقع تعمل على جميع الأجهزة</p>
             </div>
             <div class="feature-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/1055/1055672.png" alt="seo">
-                <h3>تحسين محركات البحث - SEO Optimized</h3>
-                <p>ترتيب أفضل في نتائج البحث - Better search engine ranking</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/1055/1055672.png" alt="SEO Optimized">
+                <h3>تحسين محركات البحث</h3>
+                <p>ترتيب أفضل في نتائج البحث</p>
             </div>
             <div class="feature-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/6815/6815006.png" alt="security">
-                <h3>حماية كاملة - Full Security</h3>
-                <p>حماية متقدمة عبر الإنترنت - Advanced online security protection</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/6815/6815006.png" alt="Full Security">
+                <h3>حماية كاملة</h3>
+                <p>حماية متقدمة عبر الإنترنت</p>
             </div>
         </div>
     </section>
-
     <footer>
         <p>© 2024 جميع الحقوق محفوظة - All rights reserved</p>
     </footer>
